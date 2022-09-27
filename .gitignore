@@ -1,0 +1,10 @@
+**/node_modules
+**/_archived
+**/.svn
+**/.hg
+**/CVS
+**/.DS_Store
+**/Thumbs.db
+**/node_modules
+**/bower_components
+**/config.codekit3
