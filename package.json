@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "change-case": "^4.1.2",
+    "change-case-all": "^1.0.15",
     "core-js": "^3.25.3",
     "deepmerge": "^4.2.2",
     "regenerator-runtime": "^0.13.9"

@@ -1,9 +1,11 @@
+import {snakeCase} from 'change-case'
 const mxMode = getMXMode();
 const isMobile = window.innerWidth <= 1024;
 const isDesktop = window.innerWidth > 1024;
 const isDev = mxMode === "dev";
 const isTest = mxMode === "test";
 const isProd = mxMode === "prod";
+const kebabCase = (...args)=>snakeCase(...args).replace(/_/g, '-')
 const mxConfig = {
     mxMode,
     isMobile,
@@ -398,8 +400,10 @@ mxStores.prod.runMX = () => {
                 sel,
                 parent,
                 ele = null;
-            suffix = title.toLowerCase().replace(/[^a-zA-Z0-9-]/g, "-");
+
+            suffix = kebabCase(`${title}`);
             sel = `a.header-navigation_link.title-${suffix}`;
+            console.log('hideLink', {sel, title, suffix})
             parent.classList.add("nav-item-hidden");
             parent.style.display = "none";
             try {
@@ -439,6 +443,7 @@ mxStores.prod.runMX = () => {
                 "a.header-navigation_link.title-mx-docs",
                 "a.header-navigation_link.title-support",
                 "a.header-navigation_link.title-mx-academy",
+                "a.header-navigation_link.title-developer-portal",
             ].forEach((sel) => {
                 const ele = document.querySelector(sel);
                 const parent = ele.parentElement;
