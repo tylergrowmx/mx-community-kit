@@ -1,12 +1,12 @@
-import {snakeCase} from 'change-case';
-import merge from 'deepmerge';
+import { snakeCase } from "change-case";
+import merge from "deepmerge";
 const mxMode = getMXMode();
 const isMobile = window.innerWidth <= 1024;
 const isDesktop = window.innerWidth > 1024;
 const isDev = mxMode === "dev";
 const isTest = mxMode === "test";
 const isProd = mxMode === "prod";
-const kebabCase = (...args)=>snakeCase(...args).replace(/_/g, '-')
+const kebabCase = (...args) => snakeCase(...args).replace(/_/g, "-");
 const mxConfig = {
     mxMode,
     isMobile,
@@ -16,7 +16,7 @@ const mxConfig = {
     isProd,
 };
 let MX = null;
-const defaultResourcesDropdown = {
+const defaultResources = {
     id: "resources",
     title: "Resources",
     order: 1,
@@ -376,7 +376,6 @@ mxStores.prod.createMX = () => {
     };
 };
 mxStores.prod.runMX = () => {
-
     try {
         if (window.innerWidth <= 1024) {
             return;
@@ -384,10 +383,24 @@ mxStores.prod.runMX = () => {
         const mx = MX || mxStores.prod.createMX();
         MX = mx;
         const { Dropdown } = mx;
-        const customResources =  typeof resourcesDropdown !== "undefined"
-        ? resourcesDropdown
-        : defaultResourcesDropdown;
-        const rs = merge.all([{id:'resources'},defaultResourcesDropdown, customResources]);
+        const customResources =
+            typeof resourcesDropdown !== "undefined"
+                ? { ...defaultResources, resourcesDropdown }
+                : { ...defaultResources };
+
+        const rs = {
+            ...merge.all([
+                { id: "resources" },
+                defaultResources,
+                customResources,
+            ]),
+            links: {
+                top: customResources.links.top || defaultResources.links.top,
+                bottom:
+                    customResources.links.bottom ||
+                    defaultResources.links.bottom,
+            },
+        };
         const hideLink = (link) => {
             var { title } = link;
             var suffix,
