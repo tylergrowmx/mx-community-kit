@@ -1,5 +1,9 @@
 **/node_modules
 **/_archived
+**/_archives
+**/_archive
+**/.old
+**/_old
 **/.svn
 **/.hg
 **/CVS

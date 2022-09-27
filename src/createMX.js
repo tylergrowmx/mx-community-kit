@@ -1,4 +1,5 @@
-import {snakeCase} from 'change-case'
+import {snakeCase} from 'change-case';
+import merge from 'deepmerge';
 const mxMode = getMXMode();
 const isMobile = window.innerWidth <= 1024;
 const isDesktop = window.innerWidth > 1024;
@@ -42,12 +43,6 @@ const defaultResourcesDropdown = {
         ],
     },
 };
-// if(typeof resourcesDropdown === 'undefined'){
-//     const resourcesDropdown = defaultResourcesDropdown;
-//     globalThis.resourcesDropdown = resourcesDropdown;
-//     window.resourcesDropdown = resourcesDropdown;
-    
-// }
 const mxStores = { prod: {}, dev: {}, test: {} };
 mxStores.prod.createMX = () => {
     function Dropdown(
@@ -389,11 +384,10 @@ mxStores.prod.runMX = () => {
         const mx = MX || mxStores.prod.createMX();
         MX = mx;
         const { Dropdown } = mx;
-
-        const rs =
-            typeof resourcesDropdown !== "undefined"
-                ? resourcesDropdown
-                : defaultResourcesDropdown;
+        const customResources =  typeof resourcesDropdown !== "undefined"
+        ? resourcesDropdown
+        : defaultResourcesDropdown;
+        const rs = merge.all([{id:'resources'},defaultResourcesDropdown, customResources]);
         const hideLink = (link) => {
             var { title } = link;
             var suffix,
@@ -403,7 +397,6 @@ mxStores.prod.runMX = () => {
 
             suffix = kebabCase(`${title}`);
             sel = `a.header-navigation_link.title-${suffix}`;
-            console.log('hideLink', {sel, title, suffix})
             parent.classList.add("nav-item-hidden");
             parent.style.display = "none";
             try {
@@ -450,7 +443,11 @@ mxStores.prod.runMX = () => {
                 parent.classList.add("nav-item-hidden");
                 parent.style.display = "none";
             });
-        hideReplaced();
+        try {
+            hideReplaced();
+        } catch {
+            // do nothing
+        }
     } catch (mxCommunityCustomDropdownError) {
         console.warn(
             "Error @ mxCommunityCustomDropdownError \nPlease inform Tyler Grow of the error. More details below...\n"
