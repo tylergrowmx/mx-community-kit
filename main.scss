@@ -1,0 +1,15 @@
+
+@media only screen and (max-width: 1024px) {
+    #resources-mainlinks {
+        padding-top: .75rem;
+    }
+    a.header-navigation_link {
+        &.title-mx-docs,
+        &.title-support,
+        &.title-mx-academy,
+        &.title-developer-portal{
+            display: none !important;
+        }
+    }
+}
+
