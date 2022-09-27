@@ -1,1 +1,23 @@
-@media only screen and (min-width: 1025px){#resources-mainlinks{margin-top:.75rem}a.header-navigation_link.title-mx-docs,a.header-navigation_link.title-support,a.header-navigation_link.title-mx-academy,a.header-navigation_link.title-developer-portal{display:none !important}}
+@media only screen and (min-width: 1025px) { 
+
+  
+     ul#resources-quicklinks { 
+         border-bottom-width: 0px !important; 
+         border-bottom-style: solid !important; 
+         border-bottom-color: rgba(0, 0, 0, 0) !important;
+         border-bottom: none !important; 
+     } 
+  
+     a.header-navigation_link.title-mx-docs, 
+     a.header-navigation_link.title-support, 
+     a.header-navigation_link.title-mx-academy, 
+     a.header-navigation_link.title-developer-portal { 
+         display: none !important; 
+     } 
+
+     a.main-menu-link.link--text:hover,
+     a.main-menu-link.link--text:focus { 
+          color:  var(--config--main-color-brand) !important;
+     }
+ } 
+ 

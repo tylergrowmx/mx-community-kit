@@ -1,15 +1,37 @@
-
-@media only screen and (min-width: 1025px) {
-    #resources-mainlinks {
-        margin-top: .75rem;
-    }
-    a.header-navigation_link {
-        &.title-mx-docs,
-        &.title-support,
-        &.title-mx-academy,
-        &.title-developer-portal{
-            display: none !important;
-        }
-    }
-}
-
+@media only screen and (min-width: 1025px) { 
+     ul#resources-quicklinks { 
+         border-bottom: none !important; 
+         border-bottom-width: 0px !important;
+         border-bottom-style: solid !important;
+            border-bottom-color: transparent !important;
+     } 
+  
+     // ul#resources-mainlinks.main-menu-list { 
+     //     display: block; 
+     //     padding: 0 !important; 
+     //     margin: 0 !important; 
+     //     li.main-menu-list__item.main-menu-list__item--no-hover.mx.mx-mainlink { 
+     //         display: block; 
+     //         &:first-child,&:last-child { 
+     //             padding: 0 !important; 
+     //             margin: 0 !important; 
+     //         } 
+     //         a.link--text.main-menu-link.main-menu-link--category { 
+     //             padding-top: 1.25rem !important; 
+     //             padding-bottom: 1rem !important; 
+     //         } 
+     //     } 
+  
+  
+     // } 
+     a.header-navigation_link { 
+  
+         &.title-mx-docs, 
+         &.title-support, 
+         &.title-mx-academy, 
+         &.title-developer-portal { 
+             display: none !important; 
+         } 
+     } 
+ } 
+ 
