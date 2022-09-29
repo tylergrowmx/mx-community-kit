@@ -230,7 +230,7 @@ mxStores.prod.createMX = () => {
         function listen() {
             const { el, container, links, btn } = getEls();
             btn.addEventListener("click", (e) => {
-                e.preventDefault();
+                // e.preventDefault();
 
                 const next = !t.expanded;
                 t.expanded = next;
@@ -241,10 +241,10 @@ mxStores.prod.createMX = () => {
                 }
             });
 
-            btn.addEventListener("keydown", (e) => {
-                e.preventDefault();
-
+            btn.addEventListener("keyup", (e) => {
+                
                 if (e.key === "ArrowDown" || e.key === "Enter") {
+                    e.preventDefault();
                     t.open();
                     setTimeout(() => {
                         const firstLink = links[0];
@@ -283,16 +283,16 @@ mxStores.prod.createMX = () => {
                 //     // console.log('keyup', {key, event: e})
                 // });
             });
-            document.body.addEventListener("click", (e) => {
-                if (!el.contains(e.target)) {
-                    t.toggle(false);
-                }
-            });
-            container.addEventListener("keydown", (e) => {
-                if (e.key === "Escape") {
-                    t.toggle(false);
-                }
-            });
+            // document.body.addEventListener("click", (e) => {
+            //     if (!el.contains(e.target)) {
+            //         t.toggle(false);
+            //     }
+            // });
+            // container.addEventListener("keydown", (e) => {
+            //     if (e.key === "Escape") {
+            //         t.toggle(false);
+            //     }
+            // });
         }
         return this;
     }
